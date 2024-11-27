@@ -61,7 +61,7 @@ public class VStaffLogin extends javax.swing.JFrame {
             }
         });
 
-        ComboBoxJobPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Job Position", "Staff ", "Administrator", " " }));
+        ComboBoxJobPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Job Position", "Staff ", "Administrator" }));
 
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLogin.setText("Login");
@@ -163,24 +163,25 @@ public class VStaffLogin extends javax.swing.JFrame {
         CStaffLogin loginController = new CStaffLogin(this, new MStaffLogin());
         
         //Check if Login is successful
-        if (loginController.handleLogin(username, password, jobPosition)) {
+        if (loginController.handleLogin(username, password, jobPosition)){
             JOptionPane.showMessageDialog(null, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             
             //Load dashboard based on job position
-            if (jobPosition.equals("administrator")) {
+            if (jobPosition.equals("administrator")){
                 
                 //Navigate user to administrator dashboard
                 VAdministratorDashboard admin_dashboard = new VAdministratorDashboard();
                 admin_dashboard.setVisible(true);
                 this.setVisible(false);
                 
-            } else if (jobPosition.equals("staff")) {
+            } else if (jobPosition.equals("staff")){
                 
                 //Display success message for staff (staff dashboard and UIs not implemented)
                 JOptionPane.showMessageDialog(null, "Login sucess. Staff dashboard not available", "Success", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 
             }
+            
         } else {
             
             //If credentials are invalid, display error message

@@ -43,7 +43,7 @@ GROUP BY
 		</band>
 	</title>
 	<pageHeader>
-		<band height="78" splitType="Stretch">
+		<band height="89" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="111" height="20" uuid="61e03f38-4d53-406e-80ec-7aa92142e6dd"/>
 				<textElement>
@@ -72,7 +72,7 @@ Website: www.unctrade.lk]]></text>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="45" splitType="Stretch">
+		<band height="49" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="55" height="20" uuid="cc1b680f-882a-4c83-9065-b155cad287fa"/>
 				<textElement textAlignment="Center">
@@ -115,6 +115,9 @@ Website: www.unctrade.lk]]></text>
 				</textElement>
 				<text><![CDATA[Tasks Completed]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="35" width="555" height="1" uuid="ea5d483b-d301-43f2-a0e5-5aad7efa38eb"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>

@@ -3,14 +3,11 @@ import java.util.*;
 import model.*;
 
 public class CViewAssignedTasks {
-    private final MViewAssignedTasks taskModel;
-
-    public CViewAssignedTasks(){
-        taskModel = new MViewAssignedTasks();
-    }
-        
+    private MViewAssignedTasks taskModel;
+  
     public List<MAssignedTasks> getAllTasks() {
-        return taskModel.getAllAssignedTasks();
+        taskModel = new MViewAssignedTasks();
+        return taskModel.getAllAssignedTasks(); //Return List of MViewAssignedTasks objects from model
     }
 }
 

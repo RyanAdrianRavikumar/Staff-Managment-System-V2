@@ -124,7 +124,7 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
             }
         });
 
-        comboBoxJobPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Job Position", "Staff", "Administrator", "" }));
+        comboBoxJobPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Job Position", "Staff", "Administrator" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -339,7 +339,7 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Invalid input: " + e.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
 
-            //Catch any Exception to avoid program interruptions
+        //Catch any Exception to avoid program interruptions
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -492,7 +492,7 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
             } else if(this.comboBoxJobPosition.getSelectedItem() == "Staff"){
                 jobPosition = "Staff";
             } else {
-                JOptionPane.showMessageDialog(null, "Please select a valid job position!", "Validation Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please select a valid job position!", "Validation Error", JOptionPane.ERROR_MESSAGE);
             }
 
             monthlySalary = Double.parseDouble(this.txtMonthlySalary.getText());

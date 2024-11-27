@@ -161,42 +161,49 @@ public class VAdministratorDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVstaffRegistrationAndDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVstaffRegistrationAndDetailsActionPerformed
+        //Load staff registration UI
         VStaffRegistrationAndDetails staff_registration = new VStaffRegistrationAndDetails();
         staff_registration.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVstaffRegistrationAndDetailsActionPerformed
 
     private void btnVViewStaffAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVViewStaffAttendanceActionPerformed
+        //Load staff attendance UI
         VViewStaffAttendance staff_attendance = new VViewStaffAttendance();
         staff_attendance.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVViewStaffAttendanceActionPerformed
 
     private void btnVViewAssignedTasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVViewAssignedTasksActionPerformed
+        //Load assigned task UI
         VViewAssignedTasks assigned_tasks = new VViewAssignedTasks();
         assigned_tasks.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVViewAssignedTasksActionPerformed
 
     private void labelVStaffRegistrationAndDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVStaffRegistrationAndDetailsMouseClicked
+        //Load staff registration UI 
         VStaffRegistrationAndDetails staff_registration = new VStaffRegistrationAndDetails();
         staff_registration.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_labelVStaffRegistrationAndDetailsMouseClicked
 
     private void labelVViewStaffAttendanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVViewStaffAttendanceMouseClicked
+        //Load staff attendance UI
         VViewStaffAttendance staff_attendance = new VViewStaffAttendance();
         staff_attendance.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_labelVViewStaffAttendanceMouseClicked
 
     private void labelVViewAssignedTasksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVViewAssignedTasksMouseClicked
+        //Load assigned task UI
         VViewAssignedTasks assigned_tasks = new VViewAssignedTasks();
         assigned_tasks.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_labelVViewAssignedTasksMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        //Logout button returns user to login form
         VStaffLogin staff_login = new VStaffLogin();
         staff_login.setVisible(true);
         this.setVisible(false);

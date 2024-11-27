@@ -32,6 +32,7 @@ public class MStaffLogin {
             System.err.println("Database Error: " + ex.getMessage());
         }
 
+        //Forward boolean result to controller
         return isValidUser; 
     }
 }
