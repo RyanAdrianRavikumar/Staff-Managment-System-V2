@@ -30,8 +30,12 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAttendance = new javax.swing.JTable();
         btnShowTable = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("View Staff Attendance - Staff Management System");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableAttendance.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -41,40 +45,34 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Attendance ID:", "Staff Name:", "Checkin Time", "Checkout Time", "Total Hours Worked", "Overtime Hours", "Date"
+                "Attendance ID", "Staff Name", "Checkin Time", "Checkout Time", "Total Hours Worked", "Overtime Hours", "Date"
             }
         ));
         jScrollPane1.setViewportView(tableAttendance);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 101, 795, 396));
+
+        btnShowTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnShowTable.setText("Show Table");
         btnShowTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowTableActionPerformed(evt);
             }
         });
+        getContentPane().add(btnShowTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 68, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(282, Short.MAX_VALUE)
-                .addComponent(btnShowTable)
-                .addGap(402, 402, 402))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addGap(40, 40, 40))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(btnShowTable)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
+        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBack.setText("<- Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\Staff Managment System (with MVC)\\images\\background.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,6 +119,13 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnShowTableActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        //Return back to the dashboard UI
+        VAdministratorDashboard admin_dashboard = new VAdministratorDashboard();
+        admin_dashboard.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -158,7 +163,9 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnShowTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableAttendance;
     // End of variables declaration//GEN-END:variables
