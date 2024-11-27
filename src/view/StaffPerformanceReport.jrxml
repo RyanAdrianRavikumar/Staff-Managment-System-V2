@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a10c94ee-b00c-4c94-873b-47e2588178ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT  
+    s.staff_id,
+    CONCAT(s.first_name, ' ', s.last_name) AS staff_name,
+    COUNT(DISTINCT a.date) AS days_present,
+    SUM(GREATEST(TIMESTAMPDIFF(HOUR, a.checkin_time, a.checkout_time) - 8, 0)) AS total_ot_hours,
+    COUNT(t.task_id) AS total_tasks_assigned,
+    SUM(CASE WHEN t.task_status = 'Completed' THEN 1 ELSE 0 END) AS tasks_completed
+FROM 
+    staff s
+LEFT JOIN 
+    attendance a ON s.staff_id = a.staff_id
+LEFT JOIN 
+    assignedTasks t ON s.staff_id = t.staff_id
+GROUP BY 
+    s.staff_id, s.first_name, s.last_name;]]>
+	</queryString>
+	<field name="staff_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="staff_name" class="java.lang.String"/>
+	<field name="days_present" class="java.lang.Long"/>
+	<field name="total_ot_hours" class="java.math.BigDecimal"/>
+	<field name="total_tasks_assigned" class="java.lang.Long"/>
+	<field name="tasks_completed" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="64" uuid="c06ce251-eacb-4f25-846f-52ddeb27ca2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Performance Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="20" uuid="61e03f38-4d53-406e-80ec-7aa92142e6dd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[U.N.C Trade Center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="0" width="104" height="59" uuid="d49b6567-de5c-4885-8d07-ca0c791dadc9"/>
+				<text><![CDATA[U.N.C. Trade Center
+1234 Main Street,
+Pallimula, Panadura,
+Sri Lanka.
+Phone: +94 11 123 4567
+Email: contact@unctrade.lk
+Website: www.unctrade.lk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="27" height="20" uuid="b8b105c2-1029-4b2e-ab9e-db8ef9b4379a"/>
+				<text><![CDATA[Date: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="20" width="134" height="20" uuid="a275608a-8e62-42ee-abaa-e47f601c9609"/>
+				<text><![CDATA[Friday, November 29, 2024]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="55" height="20" uuid="cc1b680f-882a-4c83-9065-b155cad287fa"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="0" width="77" height="20" uuid="e15e9474-eeba-4b18-a229-7a837b8ff62e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="0" width="86" height="20" uuid="2d02d90e-b145-4941-9522-28b9c5703066"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Day Present]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="0" width="71" height="31" uuid="d674a446-4bcc-42d0-b8b3-f35060974f00"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Overtime Hours]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="344" y="0" width="101" height="31" uuid="b02a0bbf-bf35-4700-af83-4b25dbc42d82"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Tasks Assigned]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" uuid="744a4de1-14c7-463c-b22b-f8693d6e1075"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tasks Completed]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="55" height="20" uuid="c158d59c-ed11-408a-b537-5f076287895a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{staff_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="77" height="20" uuid="a5527da5-ae08-4999-b42f-6da04bcb4eff"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{staff_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="0" width="86" height="20" uuid="de57fe00-cd40-452e-b845-6ebf752d89e5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{days_present}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="0" width="71" height="20" uuid="d0d9ed4e-1b47-41a9-a94d-7dd9f0be3974"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_ot_hours}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="344" y="0" width="101" height="20" uuid="f12aa48f-bcb0-4cbd-ac19-e6c70f99bc64"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_tasks_assigned}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="31a19e84-3a5a-4cc6-b04f-3d9b385ce957"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tasks_completed}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="34" width="555" height="20" uuid="e90dc33b-7b15-4ad1-ac56-706af792d9eb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Page 1 ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
