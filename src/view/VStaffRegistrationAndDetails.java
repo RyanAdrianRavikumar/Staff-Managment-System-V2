@@ -279,9 +279,7 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 500, -1, -1));
 
-        btnBack.setBackground(new java.awt.Color(0, 102, 102));
         btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("<- Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -506,9 +504,15 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
 
             //Forward data to controller
             CRegisterStaff register_staff = new CRegisterStaff();
-            register_staff.staffRegistration(firstName, LastName, Address, phone, jobPosition, monthlySalary, username, password);
-
-            //Catch any Exception to avoid program interruptions
+            int rowCount = register_staff.staffRegistration(firstName, LastName, Address, phone, jobPosition, monthlySalary, username, password);
+            
+            if(rowCount > 0){
+                JOptionPane.showMessageDialog(null, "Number of records inserted: " + rowCount, "Alert", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, no records were inserted", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        //Catch any Exception to avoid program interruptions
         } catch(Exception e){
             System.out.println("Error: " + e.getMessage());
         }

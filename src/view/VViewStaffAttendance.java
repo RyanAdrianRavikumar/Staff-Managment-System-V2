@@ -31,6 +31,7 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
         tableAttendance = new javax.swing.JTable();
         btnShowTable = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,7 +51,7 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableAttendance);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 101, 795, 396));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 795, 396));
 
         btnShowTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnShowTable.setText("Show Table");
@@ -59,7 +60,7 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
                 btnShowTableActionPerformed(evt);
             }
         });
-        getContentPane().add(btnShowTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 68, -1, -1));
+        getContentPane().add(btnShowTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, -1, -1));
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBack.setText("<- Back");
@@ -70,9 +71,14 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Staff Attendance Records:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\Staff Managment System (with MVC)\\images\\background.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 520));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,6 +172,7 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnShowTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableAttendance;
     // End of variables declaration//GEN-END:variables
