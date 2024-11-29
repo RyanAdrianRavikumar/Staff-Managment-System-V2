@@ -1,0 +1,8 @@
+CREATE TABLE attendance (
+    attendance_ID INT AUTO_INCREMENT PRIMARY KEY,
+    staff_ID INT,
+    checkin_time DATETIME,
+    checkout_time DATETIME,
+    date DATE,
+    FOREIGN KEY (staff_ID) REFERENCES staff(staff_ID)
+);
