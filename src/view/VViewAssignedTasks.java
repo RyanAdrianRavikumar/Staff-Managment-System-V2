@@ -167,7 +167,43 @@ public class VViewAssignedTasks extends javax.swing.JFrame {
     private void tableAssignedTasksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableAssignedTasksMouseClicked
        
     }//GEN-LAST:event_tableAssignedTasksMouseClicked
+    
+    class RefreshTable{
+        public void refresh_table(){
+            try {
+                CViewAssignedTasks taskController = new CViewAssignedTasks();
+                List<MAssignedTasks> taskList = taskController.getAllTasks();
 
+            
+                DefaultTableModel model = new DefaultTableModel();
+
+                //Add Table Columns
+                model.addColumn("Task ID");
+                model.addColumn("Staff ID");
+                model.addColumn("Task Description");
+                model.addColumn("Task Status");
+
+                //This will loop through the AssignedTasks table and add each row into the table
+                for (int i = 0; i < taskList.size(); i++){
+                //Start the loop with the first record, and will increase as the loop continues
+                MAssignedTasks task = taskList.get(i);
+                    model.addRow(new Object[]{
+                        task.getTaskId(),
+                        task.getStaffId(),
+                        task.getTaskDescription(),
+                        task.getTaskStatus()
+                    });
+                }
+                //Set the updated model to the JTable
+                tableAssignedTasks.setModel(model);
+
+            //Catch any Exception to avoid program interruptions    
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
     private void btnShowTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTableActionPerformed
         try {
             CViewAssignedTasks taskController = new CViewAssignedTasks();
@@ -213,7 +249,10 @@ public class VViewAssignedTasks extends javax.swing.JFrame {
 
             //Forward data to the controller
             int rowCount = taskController.assignTaskToStaff(staffId, taskDescription);
-
+            
+            RefreshTable refreshTable = new RefreshTable();
+            refreshTable.refresh_table();
+            
             //Check if rows are affected
             if (rowCount > 0) {
                 JOptionPane.showMessageDialog(this, "Task assigned successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);

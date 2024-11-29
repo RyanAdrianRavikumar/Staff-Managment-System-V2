@@ -36,7 +36,7 @@ GROUP BY
 			<staticText>
 				<reportElement x="0" y="0" width="555" height="64" uuid="c06ce251-eacb-4f25-846f-52ddeb27ca2f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="24" isBold="true"/>
+					<font fontName="SansSerif" size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Staff Performance Report]]></text>
 			</staticText>
@@ -76,42 +76,42 @@ Website: www.unctrade.lk]]></text>
 			<staticText>
 				<reportElement x="0" y="0" width="55" height="20" uuid="cc1b680f-882a-4c83-9065-b155cad287fa"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Staff ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="67" y="0" width="77" height="20" uuid="e15e9474-eeba-4b18-a229-7a837b8ff62e"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Staff Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="162" y="0" width="86" height="20" uuid="2d02d90e-b145-4941-9522-28b9c5703066"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Day Present]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="260" y="0" width="71" height="31" uuid="d674a446-4bcc-42d0-b8b3-f35060974f00"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total Overtime Hours]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="344" y="0" width="101" height="31" uuid="b02a0bbf-bf35-4700-af83-4b25dbc42d82"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total Tasks Assigned]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="455" y="0" width="100" height="20" uuid="744a4de1-14c7-463c-b22b-f8693d6e1075"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tasks Completed]]></text>
 			</staticText>
@@ -125,42 +125,42 @@ Website: www.unctrade.lk]]></text>
 			<textField>
 				<reportElement x="0" y="0" width="55" height="20" uuid="c158d59c-ed11-408a-b537-5f076287895a"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{staff_id}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="67" y="0" width="77" height="20" uuid="a5527da5-ae08-4999-b42f-6da04bcb4eff"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{staff_name}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="162" y="0" width="86" height="20" uuid="de57fe00-cd40-452e-b845-6ebf752d89e5"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{days_present}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="260" y="0" width="71" height="20" uuid="d0d9ed4e-1b47-41a9-a94d-7dd9f0be3974"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_ot_hours}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="344" y="0" width="101" height="20" uuid="f12aa48f-bcb0-4cbd-ac19-e6c70f99bc64"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_tasks_assigned}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="455" y="0" width="100" height="20" uuid="31a19e84-3a5a-4cc6-b04f-3d9b385ce957"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tasks_completed}]]></textFieldExpression>
 			</textField>

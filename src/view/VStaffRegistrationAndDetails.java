@@ -55,7 +55,7 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
         btnShowTable = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnGenerateReport = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
@@ -268,16 +268,16 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
         });
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Generate Staff Performance Report");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerateReport.setBackground(new java.awt.Color(0, 153, 0));
+        btnGenerateReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerateReport.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerateReport.setText("Generate Staff Performance Report");
+        btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGenerateReportActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 500, -1, -1));
+        getContentPane().add(btnGenerateReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 500, -1, -1));
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBack.setText("<- Back");
@@ -294,17 +294,78 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    class RefreshTable{
+        public void refresh_table(){
+            //Retrieve the staff list from the controller
+            CViewStaffTable controller = new CViewStaffTable();
+            List<MStaff> staffList = controller.getAllStaffDetails();
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            DefaultTableModel model = new DefaultTableModel();
+
+            //Add column names to the table model
+            model.addColumn("Staff ID");
+            model.addColumn("First Name");
+            model.addColumn("Last Name");
+            model.addColumn("Address");
+            model.addColumn("Phone");
+            model.addColumn("Job Position");
+            model.addColumn("Monthly Salary");
+            model.addColumn("Username");
+            model.addColumn("Password");
+
+            //This will loop through the staffList and add each row into the table
+            for (int i = 0; i < staffList.size(); i++) {
+                //Start the loop with the first record, and will increase as the loop continues
+                MStaff staff = staffList.get(i);
+
+                model.addRow(new Object[]{
+                    staff.getStaffId(),
+                    staff.getFirstName(),
+                    staff.getLastName(),
+                    staff.getAddress(),
+                    staff.getPhone(),
+                    staff.getJobPosition(),
+                    staff.getMonthlySalary(),
+                    staff.getUsername(),
+                    staff.getPassword()
+                });
+            }
+
+            //Set the updated model to the JTable
+            tableStaff.setModel(model);
+        }
+    }
+    
+    private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
         try {
+            //Path to the updated jrxml file
             String reportPath = "C:\\Users\\Lenovo\\Documents\\Staff Managment System (with MVC)\\StaffManagementSystem\\src\\view\\StaffPerformanceReport.jrxml";
+
+            //Check report path 
+            File reportFile = new File(reportPath);
+            if (!reportFile.exists()) {
+                System.out.println("Report file not found: " + reportPath);
+                return;
+            }
+            System.out.println("Recompiling report: " + reportPath);
+            System.out.println("Last modified: " + reportFile.lastModified());
+
+            //Compile the updated jrxml file
             JasperReport jr = JasperCompileManager.compileReport(reportPath);
+
+            //Establish database connection
             JasperPrint jp = JasperFillManager.fillReport(jr, null, DBConnection.createDBConnection());
-            JasperViewer.viewReport(jp);
+
+            //Display the report in the viewer
+            JasperViewer jasperViewer = new JasperViewer(jp, false);
+            jasperViewer.setVisible(true);
+
         } catch (Exception e) {
+            // Print stack trace for debugging any issues
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGenerateReportActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int selectedRow = tableStaff.getSelectedRow();
@@ -326,7 +387,11 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
 
             CUpdateStaffRecord controller = new CUpdateStaffRecord();
             int rowCount = controller.updateStaffById(staffId, firstName, lastName, address, phone, jobPosition, monthlySalary, username, password);
-
+            
+            //Refresh the table
+            RefreshTable refreshTable = new RefreshTable();
+            refreshTable.refresh_table();
+            
             //Check if any table rows were affected
             if (rowCount > 0) {
                 JOptionPane.showMessageDialog(this, "Staff updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -357,7 +422,11 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
             //Forward staffId to the controller
             CDeleteStaffRecord controller = new CDeleteStaffRecord();
             int rowCount = controller.deleteStaffById(staffId);
-
+            
+            //Refresh the table
+            RefreshTable refreshTable = new RefreshTable();
+            refreshTable.refresh_table();
+            
             //Check if any records were affected
             if (rowCount > 0) {
                 JOptionPane.showMessageDialog(this, "Staff deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -506,6 +575,10 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
             CRegisterStaff register_staff = new CRegisterStaff();
             int rowCount = register_staff.staffRegistration(firstName, LastName, Address, phone, jobPosition, monthlySalary, username, password);
             
+            //Refresh the table
+            RefreshTable refreshTable = new RefreshTable();
+            refreshTable.refresh_table();
+            
             if(rowCount > 0){
                 JOptionPane.showMessageDialog(null, "Number of records inserted: " + rowCount, "Alert", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -563,12 +636,12 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnGenerateReport;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnShowTable;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboBoxJobPosition;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
