@@ -85,44 +85,18 @@ public class VViewStaffAttendance extends javax.swing.JFrame {
 
     private void btnShowTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTableActionPerformed
         try {
-        // Controller to fetch attendance data
-        CViewStaffAttendance attendanceController = new CViewStaffAttendance();
-        List<MStaffAttendance> attendanceList = attendanceController.fetchAttendanceData();
+            //Initialize the controller
+            CViewStaffAttendance attendanceController = new CViewStaffAttendance();
 
-        // Create a DefaultTableModel
-        DefaultTableModel model = new DefaultTableModel();
+            //Fetch the table model from the controller
+            DefaultTableModel model = attendanceController.getAttendanceTableModel();
 
-        // Add columns to the JTable
-        model.addColumn("Attendance ID");
-        model.addColumn("Staff Name");
-        model.addColumn("Checkin Time");
-        model.addColumn("Checkout Time");
-        model.addColumn("Total Hours Worked");
-        model.addColumn("Overtime Hours");
-        model.addColumn("Date");
+            //Set the model to the JTable
+            tableAttendance.setModel(model);
 
-        //This will loop through the attendance table and add each row into the table
-        for (int i = 0; i < attendanceList.size(); i++){
-            //Start the loop with the first record, and will increase as the loop continues
-            MStaffAttendance attendance = attendanceList.get(i);
-            
-            model.addRow(new Object[]{
-                attendance.getAttendanceId(),
-                attendance.getStaffName(),
-                attendance.getCheckinTime(),
-                attendance.getCheckoutTime(),
-                attendance.getTotalHoursWorked(),
-                attendance.getOvertimeHours(),
-                attendance.getDate()
-            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        // Set the model to the JTable
-        tableAttendance.setModel(model);
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
     }//GEN-LAST:event_btnShowTableActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

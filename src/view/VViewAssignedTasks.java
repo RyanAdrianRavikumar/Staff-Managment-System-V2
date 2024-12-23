@@ -1,9 +1,7 @@
 package view;
 import controller.*;
-import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.*;
 /**
  *
  * @author Lenovo
@@ -136,6 +134,9 @@ public class VViewAssignedTasks extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 108, -1, -1));
 
+        btnShowTable.setBackground(new java.awt.Color(255, 153, 0));
+        btnShowTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnShowTable.setForeground(new java.awt.Color(255, 255, 255));
         btnShowTable.setText("Show Table");
         btnShowTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +145,7 @@ public class VViewAssignedTasks extends javax.swing.JFrame {
         });
         getContentPane().add(btnShowTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 19, -1, -1));
 
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBack.setText("<- Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,71 +173,35 @@ public class VViewAssignedTasks extends javax.swing.JFrame {
     class RefreshTable{
         public void refresh_table(){
             try {
-                CViewAssignedTasks taskController = new CViewAssignedTasks();
-                List<MAssignedTasks> taskList = taskController.getAllTasks();
+        // Initialize the controller
+        CViewAssignedTasks taskController = new CViewAssignedTasks();
 
-            
-                DefaultTableModel model = new DefaultTableModel();
+        // Fetch the table model from the controller
+        DefaultTableModel model = taskController.getTaskTableModel();
 
-                //Add Table Columns
-                model.addColumn("Task ID");
-                model.addColumn("Staff ID");
-                model.addColumn("Task Description");
-                model.addColumn("Task Status");
+        // Set the updated model to the JTable
+        tableAssignedTasks.setModel(model);
 
-                //This will loop through the AssignedTasks table and add each row into the table
-                for (int i = 0; i < taskList.size(); i++){
-                //Start the loop with the first record, and will increase as the loop continues
-                MAssignedTasks task = taskList.get(i);
-                    model.addRow(new Object[]{
-                        task.getTaskId(),
-                        task.getStaffId(),
-                        task.getTaskDescription(),
-                        task.getTaskStatus()
-                    });
-                }
-                //Set the updated model to the JTable
-                tableAssignedTasks.setModel(model);
-
-            //Catch any Exception to avoid program interruptions    
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
         }
     }
     
     private void btnShowTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTableActionPerformed
-        try {
-            CViewAssignedTasks taskController = new CViewAssignedTasks();
-            List<MAssignedTasks> taskList = taskController.getAllTasks();
+         try {
+        // Initialize the controller
+        CViewAssignedTasks taskController = new CViewAssignedTasks();
 
-            
-            DefaultTableModel model = new DefaultTableModel();
+        // Fetch the table model from the controller
+        DefaultTableModel model = taskController.getTaskTableModel();
 
-            //Add Table Columns
-            model.addColumn("Task ID");
-            model.addColumn("Staff ID");
-            model.addColumn("Task Description");
-            model.addColumn("Task Status");
+        // Set the updated model to the JTable
+        tableAssignedTasks.setModel(model);
 
-            //This will loop through the AssignedTasks table and add each row into the table
-            for (int i = 0; i < taskList.size(); i++){
-            //Start the loop with the first record, and will increase as the loop continues
-            MAssignedTasks task = taskList.get(i);
-                model.addRow(new Object[]{
-                    task.getTaskId(),
-                    task.getStaffId(),
-                    task.getTaskDescription(),
-                    task.getTaskStatus()
-                });
-            }
-            //Set the updated model to the JTable
-            tableAssignedTasks.setModel(model);
-
-        //Catch any Exception to avoid program interruptions    
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnShowTableActionPerformed
 
     private void btnAddAssignedTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAssignedTaskActionPerformed

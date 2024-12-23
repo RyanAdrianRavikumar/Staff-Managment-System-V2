@@ -2,17 +2,10 @@ package view;
 import javax.swing.JOptionPane;
 import controller.*;
 import java.io.File;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.*;     
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import java.sql.*;
 
 public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
 
@@ -279,7 +272,7 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
         });
         getContentPane().add(btnGenerateReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 500, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBack.setText("<- Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,50 +283,21 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\Staff Managment System (with MVC)\\images\\background.jpg")); // NOI18N
         jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1370, 670));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1370, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
     class RefreshTable{
         public void refresh_table(){
-            //Retrieve the staff list from the controller
-            CViewStaffTable controller = new CViewStaffTable();
-            List<MStaff> staffList = controller.getAllStaffDetails();
+            //Initialize the controller
+        CViewStaffTable controller = new CViewStaffTable();
 
-            DefaultTableModel model = new DefaultTableModel();
+        //Fetch the table model from the controller
+        DefaultTableModel model = controller.getStaffTableModel();
 
-            //Add column names to the table model
-            model.addColumn("Staff ID");
-            model.addColumn("First Name");
-            model.addColumn("Last Name");
-            model.addColumn("Address");
-            model.addColumn("Phone");
-            model.addColumn("Job Position");
-            model.addColumn("Monthly Salary");
-            model.addColumn("Username");
-            model.addColumn("Password");
-
-            //This will loop through the staffList and add each row into the table
-            for (int i = 0; i < staffList.size(); i++) {
-                //Start the loop with the first record, and will increase as the loop continues
-                MStaff staff = staffList.get(i);
-
-                model.addRow(new Object[]{
-                    staff.getStaffId(),
-                    staff.getFirstName(),
-                    staff.getLastName(),
-                    staff.getAddress(),
-                    staff.getPhone(),
-                    staff.getJobPosition(),
-                    staff.getMonthlySalary(),
-                    staff.getUsername(),
-                    staff.getPassword()
-                });
-            }
-
-            //Set the updated model to the JTable
-            tableStaff.setModel(model);
+        //Set the updated model to the JTable
+        tableStaff.setModel(model);
         }
     }
     
@@ -441,40 +405,11 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnShowTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTableActionPerformed
-        //Retrieve the staff list from the controller
+        //Initialize the controller
         CViewStaffTable controller = new CViewStaffTable();
-        List<MStaff> staffList = controller.getAllStaffDetails();
 
-        DefaultTableModel model = new DefaultTableModel();
-
-        //Add column names to the table model
-        model.addColumn("Staff ID");
-        model.addColumn("First Name");
-        model.addColumn("Last Name");
-        model.addColumn("Address");
-        model.addColumn("Phone");
-        model.addColumn("Job Position");
-        model.addColumn("Monthly Salary");
-        model.addColumn("Username");
-        model.addColumn("Password");
-
-        //This will loop through the staffList and add each row into the table
-        for (int i = 0; i < staffList.size(); i++) {
-            //Start the loop with the first record, and will increase as the loop continues
-            MStaff staff = staffList.get(i);
-
-            model.addRow(new Object[]{
-                staff.getStaffId(),
-                staff.getFirstName(),
-                staff.getLastName(),
-                staff.getAddress(),
-                staff.getPhone(),
-                staff.getJobPosition(),
-                staff.getMonthlySalary(),
-                staff.getUsername(),
-                staff.getPassword()
-            });
-        }
+        //Fetch the table model from the controller
+        DefaultTableModel model = controller.getStaffTableModel();
 
         //Set the updated model to the JTable
         tableStaff.setModel(model);
@@ -537,20 +472,28 @@ public class VStaffRegistrationAndDetails extends javax.swing.JFrame {
             phone = this.txtPhone.getText();
 
             //validations
-            if(txtFirstName.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "First Name is Required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+             if (firstName.isEmpty() || !firstName.matches("[a-zA-Z]+")) {
+                JOptionPane.showMessageDialog(null, "First Name is Required and Must Contain Only Letters!", 
+                "Validation Error", JOptionPane.ERROR_MESSAGE);
+                return; 
             }
 
-            if(txtLastName.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Last Name is Required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            if (LastName.isEmpty() || !LastName.matches("[a-zA-Z]+")) {
+                JOptionPane.showMessageDialog(null, "Last Name is Required and Must Contain Only Letters!", 
+                "Validation Error", JOptionPane.ERROR_MESSAGE);
+                return; 
             }
 
-            if(txtAddress.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Address Field is Empty!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            if (Address.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Address Field is Empty!", 
+                "Validation Error", JOptionPane.ERROR_MESSAGE);
+                return; 
             }
 
-            if(!txtPhone.getText().matches("\\d+") || txtPhone.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Phone Must Only Contain Numbers!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            if (phone.isEmpty() || !phone.matches("\\d{10}")) { // Assuming 10-digit phone numbers
+                JOptionPane.showMessageDialog(null, "Phone Number Must Be 10 Digits and Contain Only Numbers!", 
+                "Validation Error", JOptionPane.ERROR_MESSAGE);
+                return; 
             }
 
             //Assigning of jobPosition variable and validation
