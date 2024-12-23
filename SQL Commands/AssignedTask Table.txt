@@ -1,0 +1,7 @@
+CREATE TABLE AssignedTasks (
+    task_id INT AUTO_INCREMENT PRIMARY KEY,
+    staff_id INT,
+    task_description VARCHAR(255),
+    task_status ENUM('Pending', 'In Progress', 'Completed') DEFAULT 'Pending',
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
+);

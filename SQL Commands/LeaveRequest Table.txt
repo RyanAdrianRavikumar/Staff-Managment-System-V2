@@ -1,0 +1,6 @@
+CREATE TABLE LeaveRequests (
+    leave_request_ID INT AUTO_INCREMENT PRIMARY KEY,
+    staff_ID INT NOT NULL,
+    leave_reason TEXT,
+    leave_status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending'
+);

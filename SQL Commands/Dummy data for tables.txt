@@ -1,0 +1,28 @@
+staff table:
+
+INSERT INTO staff (first_name, last_name, address, phone, job_position, monthly_salary, username, password)
+VALUES
+('John', 'Doe', '123 Elm Street, Springfield', '1234567890', 'Administrator', 5000.00, 'jdoe', 'password123'),
+('Jane', 'Smith', '456 Oak Avenue, Metropolis', '9876543210', 'Staff', 3000.00, 'jsmith', 'password456'),
+('Alice', 'Brown', '789 Pine Road, Gotham', '4567891230', 'Staff', 3200.00, 'abrown', 'password789'),
+('Bob', 'Williams', '321 Maple Blvd, Star City', '7891234560', 'Staff', 4500.00, 'bwilliams', 'password321');
+
+attendance table:
+
+INSERT INTO attendance (staff_ID, checkin_time, checkout_time, date)
+VALUES
+(1, '2024-11-26 08:00:00', '2024-11-26 16:00:00', '2024-11-26'),
+(2, '2024-11-26 09:00:00', '2024-11-26 17:00:00', '2024-11-26'),
+(3, '2024-11-26 08:30:00', '2024-11-26 15:30:00', '2024-11-26'),
+(1, '2024-11-27 08:15:00', '2024-11-27 16:15:00', '2024-11-27'),
+(4, '2024-11-27 09:00:00', '2024-11-27 17:30:00', '2024-11-27');
+
+assignedtasks table:
+
+INSERT INTO assignedtasks (staff_id, task_description, task_status)
+VALUES
+(2, 'Prepare monthly sales report', 'Pending'),
+(3, 'Update inventory records', 'In Progress'),
+(4, 'Supervise the construction site', 'Completed'),
+(2, 'Organize client meeting schedule', 'Pending'),
+(1, 'Review company policies', 'In Progress');
